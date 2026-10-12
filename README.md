@@ -1,11 +1,11 @@
-# Consumer Loan Risk & Credit Performance Analysis
+# Consumer Loan Portfolio Analysis: Composition, Pricing & Loan Profile
 
 ---
 
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Business Question](#business-question)
+2. [Project Questions](#project-questions)
 3. [Objectives](#objectives)
 4. [Dataset](#dataset)
 5. [Tools & Technologies](#tools--technologies)
@@ -23,19 +23,27 @@
 
 ## Overview
 
-This project analyzes a consumer-loan dataset to understand portfolio composition, loan characteristics, credit grades, and repayment status. The workflow covers data understanding, targeted cleaning, EDA, visualization, and a consolidated, repeatable Python script.
+This project analyzes a consumer-loan dataset to understand portfolio composition, loan characteristics, credit grades, pricing, and loan status. The workflow covers data understanding, targeted cleaning, EDA, visualization, and a consolidated, repeatable Python script.
 
-The analysis is **descriptive**. It identifies patterns and comparisons in the available data; it does not establish causation or predict future defaults.
+The analysis is **descriptive**. It profiles the portfolio and compares segments; it does not assess default risk, establish causation, or predict future outcomes.
 
-## Business Question
+| Item | Description |
+|---|---|
+| **Domain** | Consumer lending / BFSI |
+| **Scope** | Data understanding, cleaning, EDA, visualization, reusable scripting |
+| **Out of scope** | Credit-risk modelling, predictive default analysis, machine learning, Power BI |
 
-> What borrower and loan characteristics are associated with higher credit risk, loan performance, and repayment problems?
+## Project Questions
+
+1. How is the loan portfolio composed by loan status, purpose, grade, and homeownership?
+2. How are loans priced across credit grades?
+3. How do loan amounts and debt-to-income (DTI) ratios vary across purposes and loan statuses?
 
 ## Objectives
 
 - Understand the structure and quality of the dataset.
 - Clean selected fields while preserving meaningful missing values.
-- Explore loan status, purpose, loan amount, interest rate, debt-to-income (DTI) ratio, grade, and homeownership.
+- Explore loan status, purpose, loan amount, interest rate, DTI ratio, grade, and homeownership.
 - Communicate selected portfolio patterns through visualizations.
 - Document evidence, implications, and limitations without overstating conclusions.
 
@@ -87,13 +95,13 @@ The dataset includes borrower attributes, credit-history fields, loan terms and 
 
 | Finding | Evidence | Limitation |
 |---|---|---|
-| Portfolio is dominated by **Current** loans | 9,375 of 10,000 loans (93.75%) | Current status does not guarantee eventual repayment; loan age and timing matter |
-| **Debt consolidation** is the most common purpose | 5,144 loans | Frequency alone does not establish profitability or risk |
-| Interest rates generally **rise from Grade A toward Grade G** | Grouped mean rates show an upward pattern | Descriptive association; does not establish cause |
+| Portfolio is dominated by **Current** loans | 9,375 of 10,000 loans (93.75%) | Reflects status at the observed snapshot; not a default or performance rate |
+| **Debt consolidation** is the most common purpose | 5,144 loans | Frequency alone does not indicate profitability or risk |
+| Interest rates generally **rise from Grade A toward Grade G** | Grouped mean rates show an upward pattern | Descriptive pattern; does not establish cause |
 | Average loan amount **varies by purpose and status** | Group means computed in EDA | Exact values should be taken from executed notebook output |
 | Average DTI **differs by loan status** | Group means computed in EDA | Averages alone do not establish predictive power or causation |
 
-> **Rare-status note:** Only 7 loans are classified as *Charged Off*. This sample is too small for strong generalizations; sample sizes should accompany any discussion of rare statuses.
+> **Rare-status note:** Only 7 loans are classified as *Charged Off*. This sample is too small for meaningful analysis of that outcome, which is why this project profiles the portfolio rather than assessing credit risk.
 
 ## Visualizations
 
@@ -108,15 +116,15 @@ Charts should be interpreted alongside category counts and data limitations, esp
 
 ## Business Implications
 
-- Portfolio composition can be summarized through loan-status and loan-purpose distributions.
-- Grade-level interest-rate differences can be reviewed as evidence of pricing differentiation, without assuming causation.
-- Differences in loan amounts and DTI ratios can guide further investigation but do not prove default risk.
-- Rare outcomes require cautious interpretation and additional evidence before operational decisions.
+- Loan-status and loan-purpose distributions give a clear view of portfolio composition and concentration (for example, in debt consolidation).
+- Grade-level interest-rate differences are consistent with pricing differentiation across credit grades.
+- Differences in loan amounts across purposes indicate where lending exposure is concentrated.
+- Differences in DTI across statuses are a starting point for further investigation, not evidence of default risk.
 
 ## Limitations
 
-- Descriptive analysis only; no default prediction or causal inference.
-- Only seven *Charged Off* records, which limits analysis of that outcome.
+- Descriptive analysis only; it does not assess credit risk, predict defaults, or establish causal relationships.
+- The dataset contains very few non-Current outcomes (only 7 *Charged Off* records), which does not support a credit-risk analysis.
 - Imputation decisions can influence summary statistics.
 - Joint-application fields retain missing values because they may not apply to individual applications.
 - Time coverage, sampling method, and field definitions should be verified before making broader claims.
@@ -125,7 +133,7 @@ Charts should be interpreted alongside category counts and data limitations, esp
 ## Project Structure
 
 ```
-consumer-loan-risk-analysis/
+consumer-loan-portfolio-analysis/
 ├── Documentation/
 │   └── Project_documentation.pdf
 ├── Scripts/
@@ -145,8 +153,8 @@ consumer-loan-risk-analysis/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/akash8kj/<repo-name>.git
-cd <repo-name>
+git clone https://github.com/akash8kj/consumer-loan-portfolio-analysis.git
+cd consumer-loan-portfolio-analysis
 
 # 2. Install dependencies
 pip install pandas numpy matplotlib jupyter
@@ -160,5 +168,5 @@ To follow the analysis step by step, open the notebooks in order (`01` to `04`) 
 ## Author
 
 **Ankan Mondal**
-BCA Student, | Aspiring Data Analyst
+BCA Student,| Aspiring Data Analyst
 
